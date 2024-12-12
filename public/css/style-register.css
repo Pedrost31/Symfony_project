@@ -1,0 +1,90 @@
+body {
+    background: url('/images/image_uber.webp') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    overflow:hidden;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+
+}
+
+.login-card {
+    width: 420px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+}
+
+.login-card h1 {
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.login-card input, .login-card select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+}
+
+.login-card button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 20px;
+    background: #6c757d;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-card button:hover {
+    background: #495057;
+}
+
+.login-card p {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.custom-select {
+    width: 100%;
+    margin: 8px 0;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 14px;
+    appearance: none;
+}
+
+.custom-select:focus {
+    outline: none;
+    border: 1px solid #6c757d;
+    box-shadow: 0 0 8px rgba(108, 117, 125, 0.8);
+}
+
+.custom-select option {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
+
+.label{
+    color:white;
+}
