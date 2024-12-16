@@ -1,0 +1,251 @@
+{% block head %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #eaeaea;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 8%;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            color: #222;
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0;
+            animation: slideRight 1s ease forwards;
+        }
+
+        .navbar a {
+            display: inline-block;
+            font-size: 18px;
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 20px;
+            transition: 0.3s;
+            opacity: 0;
+            animation: slideTop .5s ease forwards;
+            animation-delay: calc(.2s * var(--i))        
+        }
+
+        .navbar a:hover {
+            color: #1743e3;
+        }
+
+        .navbar a.active {
+            color: #1743e3;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: space-between;
+            width: 150px;
+            height: 40px;
+        }
+
+        .social-media a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid transparent;
+            text-decoration: none;
+            transform: rotate(45deg);
+            transition: 5s;
+            opacity: 0;
+            animation: slideSci .5s ease forwards;
+            animation-delay: calc(.2s * var(--i))        
+        }
+
+        .social-media a:hover {
+            border-color: #eaeaea;
+        }
+
+        .social-media a i {
+            font-size: 24px;
+            color: #eaeaea;
+            transform: rotate(-45deg);
+        }
+
+        /* Page Articles */
+        .articles {
+            padding: 100px 8% 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .card-description {
+            font-size: 16px;
+            color: #777;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .card-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1743e3;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .card-btn:hover {
+            background-color: #0e2c8d;
+        }
+
+        @keyframes slideRight {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideTop {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideSci {
+            0% {
+                transform: translateX(100px) rotate(45deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0) rotate(45deg);
+                opacity: 1;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <header class="header">
+        <a href="" class="logo">Cars.</a>
+        <nav class="navbar">
+            <a href="/dashboard" style="--i:1;" >Home</a>
+            <a href="" style="--i:2;">About</a>
+            <a href="" style="--i:3;">Review</a>
+            <a href="/articles" style="--i:4;" class="active">Articles</a>
+            <a href="" style="--i:5;">Contact</a>
+        </nav>
+
+        <div class="social-media">
+            <a href="" style="--i:1;"><i class='bx bxl-twitter'></i></a>
+            <a href="" style="--i:2;"><i class='bx bxl-facebook'></i></a>
+            <a href="" style="--i:3;"><i class='bx bxl-instagram'></i></a>
+        </div>
+    </header>
+
+    <section class="articles">
+        <div class="card">
+            <img src="{{ asset('images/article1.jpg') }}" alt="Article 1">
+            <div class="card-content">
+                <h3 class="card-title">Louer une voiture facilement</h3>
+                <p class="card-description">Découvrez comment louer une voiture en quelques clics et profitez d'un service rapide et fiable pour vos déplacements.</p>
+                <a href="#" class="card-btn">Lire l'article</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ asset('images/article2.jpg') }}" alt="Article 2">
+            <div class="card-content">
+                <h3 class="card-title">Les voitures les plus populaires à louer</h3>
+                <p class="card-description">Explorez notre sélection des voitures les plus populaires disponibles à la location pour toutes vos occasions.</p>
+                <a href="#" class="card-btn">Lire l'article</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ asset('images/article3.jpg') }}" alt="Article 3">
+            <div class="card-content">
+                <h3 class="card-title">Conseils pour une location réussie</h3>
+                <p class="card-description">Suivez ces conseils pour assurer une location de voiture en toute tranquillité et profiter d'une expérience sans souci.</p>
+                <a href="#" class="card-btn">Lire l'article</a>
+            </div>
+        </div>
+
+        <!-- Ajoute d'autres cartes d'articles si nécessaire -->
+    </section>
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+{% endblock %}

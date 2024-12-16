@@ -1,0 +1,202 @@
+{% block head %}
+    <style>
+        /* Background and overall styles */
+        body {
+            background: url('/images/image_uber.webp') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+        }
+
+        .register-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .register-card {
+            width: 420px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+        }
+
+        .register-card h1 {
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .register-card label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: left;
+            width: 100%;
+        }
+
+        .register-card input, .register-card select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .register-card button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 20px;
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .register-card button:hover {
+            background: #0056b3;
+        }
+
+        .register-card p {
+            margin-top: 15px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .terms-link {
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            
+            
+        }
+
+        .modal-content {
+            background: #fff;
+            color: #333;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+            max-height: 80%;
+         
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        .modal-content p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .modal-close {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #0056b3;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="register-container">
+        <div class="register-card">
+            <h1>Register</h1>
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email, {
+                    label_attr: {'class': 'label'},
+                    attr: {'class': 'form-control'}
+                }) }}
+                {{ form_row(registrationForm.username, {
+                    label: 'username',
+                    label_attr: {'class': 'label'},
+                    attr: {'class': 'form-control'}
+                }) }}
+            {{ form_row(registrationForm.plainPassword.first, {
+    label: 'Password',
+    label_attr: {'class': 'label'},
+    attr: {'class': 'form-control'}
+}) }}
+{{ form_row(registrationForm.plainPassword.second, {
+    label: 'Confirm Password',
+    label_attr: {'class': 'label'},
+    attr: {'class': 'form-control'}
+}) }}
+                {{ form_row(registrationForm.agreeTerms, {
+                    label: 'I agree to the <span class="terms-link" id="open-modal">terms and conditions</span>',
+                    label_html: true,
+                    label_attr: {'class': 'label'}
+                }) }}
+                <button type="submit" class="btn">Register</button>
+            {{ form_end(registrationForm) }}
+            <p>Vous avez déjà un compte? <a href="../login">Se connecter</a></p>
+        </div>
+    </div>
+
+    <!-- Modal for Terms and Conditions -->
+    <div class="modal" id="terms-modal">
+        <div class="modal-content">
+            <h2>Terms and Conditions</h2>
+          <p>
+    Bienvenue sur notre service de location de voitures. En vous inscrivant sur cette plateforme, vous acceptez de respecter les règles suivantes :
+    <ul>
+        <li>Vous devez être en possession d'un permis de conduire valide.</li>
+        <li>Toutes les locations doivent être retournées à temps pour éviter des frais supplémentaires.</li>
+        <li>Tous les dommages causés au véhicule seront à la charge du locataire.</li>
+        <li>Les données personnelles seront utilisées en conformité avec les réglementations GDPR.</li>
+    </ul>
+</p>
+<p>Pour plus de détails, veuillez contacter notre service d'assistance.</p>
+
+            <button class="modal-close" id="close-modal">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle modal open/close
+        document.getElementById('open-modal').addEventListener('click', function() {
+            document.getElementById('terms-modal').style.display = 'flex';
+        });
+
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('terms-modal').style.display = 'none';
+        });
+    </script>
+{% endblock %}
