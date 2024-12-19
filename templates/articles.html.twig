@@ -147,6 +147,17 @@
         .card-btn:hover {
             background-color: #0e2c8d;
         }
+        .wrapper {
+   background: url('{{ asset('images/car1.jpg') }}') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
 
         @keyframes slideRight {
             0% {
@@ -215,32 +226,37 @@
             <a href="" style="--i:3;"><i class='bx bxl-instagram'></i></a>
         </div>
     </header>
+ <div class="wrapper">
+        <h1>Nos articles</h1>
+    </div>
 
     <section class="articles">
         <div class="card">
-            <img src="{{ asset('images/article1.jpg') }}" alt="Article 1">
+            <img src="{{ asset('images/car2.jpg') }}" alt="Article 1">
             <div class="card-content">
-                <h3 class="card-title">Louer une voiture facilement</h3>
-                <p class="card-description">Découvrez comment louer une voiture en quelques clics et profitez d'un service rapide et fiable pour vos déplacements.</p>
-                <a href="#" class="card-btn">Lire l'article</a>
+                <h3 class="card-title">Rolls Royce</h3>
+                <p class="card-description">La Rolls-Royce incarne l’élégance et le luxe ultime. Avec son moteur V12 silencieux, ses finitions artisanales en cuir et boiseries précieuses. Parfaite pour les mariages.</p>
+                <a href="#" class="card-btn">Louer</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="{{ asset('images/article2.jpg') }}" alt="Article 2">
+            <img src="{{ asset('images/car3.jpg') }}" alt="Article 2">
             <div class="card-content">
-                <h3 class="card-title">Les voitures les plus populaires à louer</h3>
-                <p class="card-description">Explorez notre sélection des voitures les plus populaires disponibles à la location pour toutes vos occasions.</p>
-                <a href="#" class="card-btn">Lire l'article</a>
+                <h3 class="card-title">BWM</h3>
+                <p class="card-description">
+La BMW est synonyme de performance et de sportivité. Avec ses lignes dynamiques, ses technologies avancées et son intérieur raffiné.</p>
+                <a href="#" class="card-btn">Louer</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="{{ asset('images/article3.jpg') }}" alt="Article 3">
+            <img src="{{ asset('images/car4.jpg') }}" alt="Article 3">
             <div class="card-content">
-                <h3 class="card-title">Conseils pour une location réussie</h3>
-                <p class="card-description">Suivez ces conseils pour assurer une location de voiture en toute tranquillité et profiter d'une expérience sans souci.</p>
-                <a href="#" class="card-btn">Lire l'article</a>
+                <h3 class="card-title">Mercedes</h3>
+                <p class="card-description">
+Mercedes-Benz incarne le luxe, l'élégance et l'innovation. Avec des designs emblématiques, des intérieurs somptueux et des technologies de pointe.</p>
+                <a href="#" class="card-btn">Louer</a>
             </div>
         </div>
 

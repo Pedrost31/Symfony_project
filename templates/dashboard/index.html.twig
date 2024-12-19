@@ -243,8 +243,13 @@ z-index:-1;
             <a href="" style="--i:1;" class="active">Home</a>
             <a href="" style="--i:2;">About</a>
             <a href="" style="--i:3;">Review</a>
-            <a href="/articles" style="--i:4;">Articles</a>
-            <a href="" style="--i:5;">Contact</a>
+            <a href="/product" style="--i:4;">Articles</a>
+            <a href="/contact" style="--i:5;">Contact</a>
+            {% if app.user %}
+       
+            <a href="{{ path('app_logout') }}">Logout</a>
+       
+    {% endif %}
         </nav>
 
         <div class="social-media">

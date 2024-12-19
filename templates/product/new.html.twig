@@ -1,0 +1,226 @@
+{% block head %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+            padding-top: 60px; /* Espace pour la navbar fixe */
+        }
+
+        /* Header & Navbar */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 8%;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            animation: slideDown 1s ease-out forwards; /* Animation pour la navbar */
+        }
+
+        .logo {
+            font-size: 25px;
+            color: #222;
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 1;
+        }
+
+        .navbar {
+            display: flex;
+        }
+
+        .navbar a {
+            display: inline-block;
+            font-size: 18px;
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 20px;
+            transition: 0.3s;
+            opacity: 1; /* Définir l'opacité sur 1 pour rendre visible dès le début */
+        }
+
+        .navbar a:hover {
+            color: #1743e3;
+        }
+
+        .navbar a.active {
+            color: #1743e3;
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Social Media Icons */
+        .social-media {
+            display: flex;
+            justify-content: space-between;
+            width: 150px;
+            height: 40px;
+        }
+
+        .social-media a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid transparent;
+            text-decoration: none;
+            transform: rotate(45deg);
+            transition: 5s;
+            opacity: 0;
+            animation: slideSci .5s ease forwards;
+            animation-delay: calc(.2s * var(--i));
+        }
+
+        .social-media a:hover {
+            border-color: #eaeaea;
+        }
+
+        .social-media a i {
+            font-size: 24px;
+            color: #eaeaea;
+            transform: rotate(-45deg);
+        }
+
+        @keyframes slideSci {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Formulaire de création de produit */
+        .create-product-container {
+            padding: 100px 8% 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .form-container {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Style des champs du formulaire */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #1743e3;
+            outline: none;
+        }
+
+        /* Boutons */
+        .card-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1743e3;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .card-btn:hover {
+            background-color: #0e2c8d;
+        }
+
+        .card-btn:focus {
+            outline: none;
+        }
+
+        /* Espacement en bas */
+        .card-btn + br {
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <header class="header">
+        <a href="" class="logo">Cars.</a>
+        <nav class="navbar">
+            <a href="/dashboard" style="--i:1;" >Home</a>
+            <a href="" style="--i:2;">About</a>
+            <a href="" style="--i:3;">Review</a>
+            <a href="/product" style="--i:4;" class="active">Articles</a>
+            <a href="/contact" style="--i:5;">Contact</a>
+               {% if app.user %}
+       
+            <a href="{{ path('app_logout') }}">Logout</a>
+       
+    {% endif %}
+        </nav>
+
+        <div class="social-media">
+            <a href="" style="--i:1;"><i class="bx bxl-twitter"></i></a>
+            <a href="" style="--i:2;"><i class="bx bxl-facebook"></i></a>
+            <a href="" style="--i:3;"><i class="bx bxl-instagram"></i></a>
+        </div>
+    </header>
+
+    <div class="create-product-container">
+        <div class="form-container">
+            <h2>Create New Product</h2>
+
+            {{ include('product/_form.html.twig') }}
+
+            <a href="{{ path('app_product_index') }}" class="card-btn">Back to list</a>
+        </div>
+    </div>
+{% endblock %}

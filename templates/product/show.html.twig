@@ -1,0 +1,244 @@
+{% block head %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #eaeaea;
+            padding-top: 60px; /* Pour éviter que le contenu ne soit caché sous la navbar */
+        }
+
+        /* Header & Navbar */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 8%;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            color: #222;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .navbar {
+            display: flex;
+        }
+
+        .navbar a {
+            display: inline-block;
+            font-size: 18px;
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 20px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #1743e3;
+        }
+
+        .navbar a.active {
+            color: #1743e3;
+        }
+
+        /* Social Media */
+        .social-media {
+            display: flex;
+            justify-content: space-between;
+            width: 150px;
+            height: 40px;
+        }
+
+        .social-media a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid transparent;
+            text-decoration: none;
+            transform: rotate(45deg);
+            transition: 5s;
+        }
+
+        .social-media a:hover {
+            border-color: #eaeaea;
+        }
+
+        .social-media a i {
+            font-size: 24px;
+            color: #eaeaea;
+            transform: rotate(-45deg);
+        }
+
+        /* Product Card */
+        .product-container {
+            padding: 100px 8% 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .product-card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .product-card h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .product-card table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .product-card table th, .product-card table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .product-card table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .product-card table td {
+            color: #555;
+        }
+
+        .product-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1743e3;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .product-card a:hover {
+            background-color: #0e2c8d;
+        }
+
+        .back-btn {
+            background-color: #888;
+        }
+
+        .back-btn:hover {
+            background-color: #666;
+        }
+
+        .delete-btn {
+            display: inline-block;
+            background-color: #e74c3c; /* Rouge pour la suppression */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b; /* Rouge plus foncé au survol */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <header class="header">
+        <a href="" class="logo">Cars.</a>
+        <nav class="navbar">
+            <a href="/dashboard" >Home</a>
+            <a href="">About</a>
+            <a href="">Review</a>
+            <a href="/product" class="active">Articles</a>
+            <a href="/contact">Contact</a>
+               {% if app.user %}
+       
+            <a href="{{ path('app_logout') }}">Logout</a>
+       
+    {% endif %}
+        </nav>
+        <div class="social-media">
+            <a href=""><i class='bx bxl-twitter'></i></a>
+            <a href=""><i class='bx bxl-facebook'></i></a>
+            <a href=""><i class='bx bxl-instagram'></i></a>
+        </div>
+    </header>
+
+    <div class="product-container">
+        <div class="product-card">
+            <h2>Product Details</h2>
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Auteur</th>
+                        <td>{{ product.user ? product.user.username : 'Utilisateur inconnu' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ product.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ product.description }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Image</th>
+                        <td>{{ product.image }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prix</th>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de création</th>
+                        <td>{{ product.creationDate ? product.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="{{ path('app_product_index') }}" class="back-btn">Retourner</a>
+            <a href="{{ path('app_product_edit', {'id': product.id}) }}">Edit</a>
+
+            {{ include('product/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
